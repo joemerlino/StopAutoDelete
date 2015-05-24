@@ -1,0 +1,11 @@
+Package: com.joemerlino.stopautodelete
+Name: StopAutoDelete
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Stops the cursor from deleting entire words when holding the backspace button for a long time.
+Maintainer: Joe Merlino
+Author: Joe Merlino
+Section: Tweaks
+Homepage: https://github.com/joemerlino/StopAutoDelete
+Icon: file:///Library/PreferenceBundles/stopautodeleteprefs.bundle/stopautodeleteprefs.png

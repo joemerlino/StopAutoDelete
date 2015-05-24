@@ -1,0 +1,10 @@
+{
+    entry = {
+	bundle = stopautodeleteprefs;
+	cell = PSLinkCell;
+	detail = stopautodeleteprefsListController;
+	icon = stopautodeleteprefs.png;
+	isController = 1;
+	label = StopAutoDelete;
+    };
+}
