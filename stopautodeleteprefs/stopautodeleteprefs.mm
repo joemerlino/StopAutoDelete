@@ -27,10 +27,7 @@
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.com/sendmoney?email=merlino.giuseppe1@gmail.com"]];
 	}
 	-(void) sendEmail{
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:merlino.giuseppe1@gmail.com?subject=SmartSleep"]];
-	}
-	-(void)save{
-		[self.view endEditing:YES];
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:merlino.giuseppe1@gmail.com?subject=StopAutoDelete"]];
 	}
 @end
 
