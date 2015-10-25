@@ -1,24 +1,34 @@
-static BOOL enabled=YES;
-#define setin_domain CFSTR("com.joemerlino.stopautodelete")
+NSMutableArray *disabled_apps;
+
+%group MOD
 
 %hook UIKeyboardImpl
 - (BOOL)usesAutoDeleteWord{
-	if(enabled)
-		return NO;
-	else return YES;
+	return NO;
 }
 %end
 
-static void LoadSettings()
+%end
+
+static void PreferencesCallback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo)
 {
 	CFPreferencesAppSynchronize(CFSTR("com.joemerlino.stopautodelete"));
-	NSString *n=(NSString*)CFPreferencesCopyAppValue(CFSTR("enabled"), setin_domain);
-	enabled = (n)? [n boolValue]:YES;
- 	NSLog(@"ENABLED STOPAUTODELETE: %d",enabled);
 }
 
 %ctor
 {
-	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)LoadSettings, CFSTR("com.joemerlino.stopautodelete.preferencechanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
-	LoadSettings();
+	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, PreferencesCallback, CFSTR("com.joemerlino.stopautodelete.preferencechanged"), NULL, CFNotificationSuspensionBehaviorCoalesce);
+	NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/private/var/mobile/Library/Preferences/com.joemerlino.stopautodelete.plist"];
+	static BOOL enabled = ([prefs objectForKey:@"enabled"] ? [[prefs objectForKey:@"enabled"] boolValue] : YES);
+	NSMutableDictionary *applist = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/private/var/mobile/Library/Preferences/com.joemerlino.stopautodelete.applist.plist"];
+    disabled_apps = [[NSMutableArray alloc] init];
+    for (NSString *key in applist) {
+        static bool app_disabled = [[applist objectForKey:key] boolValue];
+        if (app_disabled)
+            [disabled_apps addObject:key];
+    }
+    NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
+    NSLog(@"[STOPAUTODELETE] ENABLED %d, %@, APPLIST %@", enabled, bundleID, applist);   
+    if (enabled && ![disabled_apps containsObject:bundleID])
+        %init(MOD);
 }

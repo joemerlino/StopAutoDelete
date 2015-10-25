@@ -5,11 +5,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>toggle</string>
+	<string>stopautodeleteprefs</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.joemerlino.autodeletetoggle</string>
-	<key>CFBundleDisplayName</key>
-	<string>toggle</string>
+	<string>com.joemerlino.stopautodeleteprefs</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -25,8 +23,6 @@
 	<key>MinimumOSVersion</key>
 	<string>3.0</string>
 	<key>NSPrincipalClass</key>
-	<string>toggleSwitch</string>
-	<key>alternate-action-url</key>
-	<string>prefs:root=StopAutoDelete</string>
+	<string>stopautodeleteprefsListController</string>
 </dict>
 </plist>

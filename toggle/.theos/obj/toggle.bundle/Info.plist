@@ -27,6 +27,6 @@
 	<key>NSPrincipalClass</key>
 	<string>toggleSwitch</string>
 	<key>alternate-action-url</key>
-	<string>prefs:</string>
+	<string>prefs:root=StopAutoDelete</string>
 </dict>
 </plist>

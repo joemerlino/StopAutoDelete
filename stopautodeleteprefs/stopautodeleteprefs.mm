@@ -24,7 +24,7 @@
 	}
 
 	-(void)donate {
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.com/sendmoney?email=merlino.giuseppe1@gmail.com"]];
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.me/joemerlino"]];
 	}
 	-(void) sendEmail{
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:merlino.giuseppe1@gmail.com?subject=StopAutoDelete"]];
